@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Solvera Energy — Solar & Inverter Website
 
-## Getting Started
+Marketing site for a solar/inverter installer serving individuals and organizations going off-grid.
+Built with Next.js 16 (App Router, Cache Components), Tailwind CSS v4 and lucide-react.
 
-First, run the development server:
+## Pages
+
+| Route      | What's there                                                                            |
+| ---------- | --------------------------------------------------------------------------------------- |
+| `/`        | Hero (Get a Quote / Consult Us), services, homes vs organizations, process, why us, packages, testimonials, FAQ |
+| `/about`   | Story, vision/mission, milestones timeline, team                                         |
+| `/gallery` | Filterable project grid with a lightbox                                                  |
+| `/contact` | Contact info, quote form (server action), map, FAQ                                      |
+
+A floating WhatsApp button sits on every page.
+
+## Customizing
+
+- **Business details** (name, phone, WhatsApp number, email, address, socials): `src/lib/site.ts`
+- **Content** (services, packages, gallery projects, team, testimonials, FAQs, stats): `src/lib/data.ts`
+- **Brand colors**: the `@theme` block in `src/app/globals.css`
+
+All photos are Unsplash placeholders and all testimonials, team members, stats and projects are sample copy —
+replace them with the client's real ones. To use local photos, put them in `public/` and reference them as `/photo.jpg`.
+
+`Get a Quote` links go to `/contact?subject=quote` and `Consult Us` to `/contact?subject=consultation`,
+which preselects the form subject.
+
+## Contact form
+
+The form posts to a server action (`src/app/contact/actions.ts`) that emails the enquiry via [Resend](https://resend.com).
+Copy `.env.example` to `.env.local` and set `RESEND_API_KEY` and `CONTACT_TO_EMAIL`.
+
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build && npm start
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
